@@ -1,13 +1,15 @@
 import axios from 'axios';
+import Config from 'react-native-config';
+
+const apiToken = Config.REPLICATE_API_TOKEN;
 
 // Fonction pour générer l'image
 export const generateImage = async (prompt: string) => {
-  const apiToken = 'TOKEN'; // Remplace par ton token API
   try {
     const response = await axios.post(
       'https://api.replicate.com/v1/predictions',
       {
-        version: 'version',
+        version: "22ef0a90d798191183772dda577cf21d83b801d9791ba050d26652cba9dc03a2",
         input: {
           model: 'dev',
           prompt: prompt,
@@ -18,7 +20,7 @@ export const generateImage = async (prompt: string) => {
           aspect_ratio: "16:9",
           output_format: "webp",
           guidance_scale: 3,
-          output_quality: 80,
+          output_quality: 50,
           prompt_strength: 0.8,
           extra_lora_scale: 1,
           num_inference_steps: 28
@@ -34,6 +36,7 @@ export const generateImage = async (prompt: string) => {
 
     return response;
   } catch (error) {
+    console.error('Erreur lors de la génération de l\'image :', error);
     throw new Error('Erreur lors de la génération de l\'image');
   }
 };
@@ -42,11 +45,12 @@ export const generateImage = async (prompt: string) => {
 export const monitorGeneration = async (id: string, setStatus: Function, setImageUrls: Function, setLoading: Function) => {
   try {
     const checkStatus = async () => {
+
       const statusResponse = await axios.get(
         `https://api.replicate.com/v1/predictions/${id}`,
         {
           headers: {
-            'Authorization': 'Bearer TOKEN',
+            'Authorization': `Bearer ${apiToken}`,
           },
         }
       );

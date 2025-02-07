@@ -1,0 +1,53 @@
+# Node modules
+/node_modules/
+
+# Yarn / npm log files
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build directories
+/build/
+dist/
+
+# Expo & React Native build files
+.expo/
+.expo-shared/
+ios/Pods/
+ios/build/
+android/.gradle/
+android/app/build/
+
+# Files created by expo prebuild
+/android/build/
+ios/build/
+ios/terraai.xcworkspace/
+
+# macOS system files
+.DS_Store
+
+# Xcode-specific
+*.xcodeproj/
+*.xcworkspace/
+ios/terraai.xcworkspace/
+
+# Podfile.lock and other pod related files
+ios/Podfile.lock
+ios/Podfile.properties.json
+
+# Secret files
+.env
+
+# IDE files
+.idea/
+.vscode/
+
+# expo-updates, cache, and other local storage
+.cache/
+*.log
+
+# Ignorer les fichiers générés
+node_modules/
+android/
+ios/
+node_modules
